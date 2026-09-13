@@ -10,7 +10,7 @@
 
 LUAU_FASTINTVARIABLE(LuauTarjanChildLimit, 10000)
 LUAU_FASTFLAG(LuauSolverV2)
-LUAU_FASTFLAG(LuauGenericNominals)
+LUAU_FASTFLAG(LuwuGenericNominals)
 LUAU_FASTINTVARIABLE(LuauTarjanPreallocationSize, 256)
 
 namespace Luau
@@ -133,7 +133,7 @@ static TypeId shallowClone(TypeId ty, TypeArena& dest, const TxnLog* log)
             ExternType clone{a.name, a.props, a.parent, a.metatable, a.tags, a.userData, a.definitionModuleName, a.definitionLocation, a.indexer};
             if (FFlag::DebugLuauUserDefinedClasses)
                 clone.relation = a.relation;
-            if (FFlag::LuauGenericNominals)
+            if (FFlag::LuwuGenericNominals)
             {
                 clone.hasUnresolvedGenerics = a.hasUnresolvedGenerics;
                 clone.instantiatedTypeParams = a.instantiatedTypeParams;
@@ -286,7 +286,7 @@ void Tarjan::visitChildren(TypeId ty, int index)
             );
         }
 
-        if (FFlag::LuauGenericNominals)
+        if (FFlag::LuwuGenericNominals)
         {
             for (TypeId itp : etv->instantiatedTypeParams)
                 visitChild(itp);
@@ -879,7 +879,7 @@ void Substitution::replaceChildren(TypeId ty)
             etv->indexer->indexResultType = replace(etv->indexer->indexResultType);
         }
 
-        if (FFlag::LuauGenericNominals)
+        if (FFlag::LuwuGenericNominals)
         {
             for (TypeId& itp : etv->instantiatedTypeParams)
                 itp = replace(itp);

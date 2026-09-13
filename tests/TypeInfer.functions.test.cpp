@@ -26,7 +26,7 @@ LUAU_FASTFLAG(LuauBidirectionalInferenceVariadics)
 LUAU_FASTFLAG(LuauBidirectionalInferenceBetterLambdaHandling)
 LUAU_FASTFLAG(LuauHigherOrderGenericInference)
 LUAU_FASTFLAG(LuauCollapseDirectBoundCycles)
-LUAU_FASTFLAG(LuauDefaultArguments)
+LUAU_FASTFLAG(LuwuDefaultArguments)
 LUAU_FASTFLAG(LuauBetterMissingPropertiesTypeError)
 
 TEST_SUITE_BEGIN("TypeInferFunctions");
@@ -4378,7 +4378,7 @@ TEST_CASE_FIXTURE(Fixture, "default_argument_infers_parameter_type")
 {
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
-        {FFlag::LuauDefaultArguments, true},
+        {FFlag::LuwuDefaultArguments, true},
     };
 
     CheckResult result = check(R"(
@@ -4395,7 +4395,7 @@ TEST_CASE_FIXTURE(Fixture, "default_argument_is_checked_against_parameter_annota
 {
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
-        {FFlag::LuauDefaultArguments, true},
+        {FFlag::LuwuDefaultArguments, true},
     };
 
     CheckResult result = check(R"(
@@ -4411,7 +4411,7 @@ TEST_CASE_FIXTURE(Fixture, "default_argument_infers_parameter_type_string")
     // Regression test; lsp used to crash in some cases when type annotations w/ default arg weren't provided
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
-        {FFlag::LuauDefaultArguments, true},
+        {FFlag::LuwuDefaultArguments, true},
     };
 
     CheckResult result = check(R"(

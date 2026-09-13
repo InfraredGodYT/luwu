@@ -33,9 +33,9 @@ LUAU_FASTFLAGVARIABLE(LuauTableEntriesDontNeedToMatchIndent)
 LUAU_FASTFLAGVARIABLE(LuauCstAttr)
 LUAU_FASTFLAGVARIABLE(LuauStoreConstKeywordBegin)
 LUAU_FASTFLAGVARIABLE(LuauTrackPrefixLocal)
-LUAU_FASTFLAGVARIABLE(LuauDefaultArguments)
-LUAU_FASTFLAGVARIABLE(LuauExternTypeGenericMethods)
-LUAU_FASTFLAGVARIABLE(LuauGenericNominals)
+LUAU_FASTFLAGVARIABLE(LuwuDefaultArguments)
+LUAU_FASTFLAGVARIABLE(LuwuExternTypeGenericMethods)
+LUAU_FASTFLAGVARIABLE(LuwuGenericNominals)
 LUAU_FASTFLAGVARIABLE(LuauNoDuplicateBinaryPrefix)
 
 // Clip with DebugLuauReportReturnTypeVariadicWithTypeSuffix
@@ -1784,7 +1784,7 @@ AstDeclaredExternTypeProperty Parser::parseDeclaredExternTypeMethod(const AstArr
     AstArray<AstGenericType*> generics;
     AstArray<AstGenericTypePack*> genericPacks;
 
-    if (FFlag::LuauExternTypeGenericMethods)
+    if (FFlag::LuwuExternTypeGenericMethods)
     {
         std::tie(generics, genericPacks) = parseGenericTypeList(/* withDefaultValues= */ false);
     }
@@ -1945,7 +1945,7 @@ AstStat* Parser::parseDeclaration(const Location& start, const AstArray<AstAttr*
         AstArray<AstGenericType*> classGenerics;
         AstArray<AstGenericTypePack*> classGenericPacks;
 
-        if (FFlag::LuauGenericNominals)
+        if (FFlag::LuwuGenericNominals)
         {
             std::tie(classGenerics, classGenericPacks) = parseGenericTypeList(/* withDefaultValues= */ false);
         }
@@ -2386,14 +2386,14 @@ std::pair<AstExprFunction*, AstLocal*> Parser::parseFunctionBody(
             std::tie(vararg, varargLocation, varargAnnotation) = parseBindingList(
                 args,
                 /* allowDot3= */ true,
-                /* allowDefault= */ FFlag::LuauDefaultArguments,
+                /* allowDefault= */ FFlag::LuwuDefaultArguments,
                 &cstNode->argsCommaPositions,
                 nullptr,
                 &cstNode->varargAnnotationColonPosition
             );
         else
             std::tie(vararg, varargLocation, varargAnnotation) =
-                parseBindingList(args, /* allowDot3= */ true, /* allowDefault= */ FFlag::LuauDefaultArguments);
+                parseBindingList(args, /* allowDot3= */ true, /* allowDefault= */ FFlag::LuwuDefaultArguments);
     }
 
     std::optional<Location> argLocation;

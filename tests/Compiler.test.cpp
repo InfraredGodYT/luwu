@@ -32,7 +32,7 @@ LUAU_FASTFLAG(LuauExportValueSyntax)
 LUAU_FASTFLAG(LuauExportedClassIsNilWorkaround)
 LUAU_FASTFLAG(DebugLuauNoInline)
 LUAU_FASTFLAG(LuauEmitCallFeedback)
-LUAU_FASTFLAG(LuauDefaultArguments)
+LUAU_FASTFLAG(LuwuDefaultArguments)
 
 using namespace Luau;
 
@@ -12169,7 +12169,7 @@ RETURN R3 1
 
 TEST_CASE("DefaultArguments")
 {
-    ScopedFastFlag sff{FFlag::LuauDefaultArguments, true};
+    ScopedFastFlag sff{FFlag::LuwuDefaultArguments, true};
 
     // Assigning constants as default arguments
     CHECK_EQ(
