@@ -19,9 +19,9 @@ using std::nullopt;
 
 LUAU_FASTFLAG(DebugLuauForceOldSolver)
 LUAU_FASTFLAG(LuauDropUnionSubtypeReasoning)
-LUAU_FASTFLAG(LuauExternTypeGenericMethods)
+LUAU_FASTFLAG(LuwuExternTypeGenericMethods)
 LUAU_FASTFLAG(LuauExternTypeUseDefinitionScope)
-LUAU_FASTFLAG(LuauGenericNominals)
+LUAU_FASTFLAG(LuwuGenericNominals)
 LUAU_FASTFLAG(LuauHigherOrderGenericInference)
 LUAU_FASTFLAG(LuauSolverV2)
 LUAU_FASTFLAG(LuauAllowIntersectionOfOneTableWithExtern)
@@ -1282,7 +1282,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generic_method_property_syntax_still_bro
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, false},
-        {FFlag::LuauGenericNominals, false},
+        {FFlag::LuwuGenericNominals, false},
     };
 
     unfreeze(getFrontend().globals.globalTypes);
@@ -1308,7 +1308,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_function_sugar_generic_method_resolves")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     loadDefinition(R"(
@@ -1331,7 +1331,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generic_method_multiple_params")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     loadDefinition(R"(
@@ -1357,7 +1357,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generic_method_infers_union_return_from_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     loadDefinition(R"(
@@ -1397,7 +1397,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generic_method_explicit_instantiation")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     loadDefinition(R"(
@@ -1420,7 +1420,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generic_method_explicit_instantiation_mi
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     loadDefinition(R"(
@@ -1442,7 +1442,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_instantiate")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
     };
 
     loadDefinition(R"(
@@ -1470,7 +1470,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_nested_instantiation")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
     };
 
     loadDefinition(R"(
@@ -1499,7 +1499,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_nested_instantiation_with_unuse
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
     };
 
     // `T` does not appear anywhere in Result's own body, so the type argument used to
@@ -1527,7 +1527,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_two_params_with_method")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
     };
 
     loadDefinition(R"(
@@ -1571,7 +1571,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_explicit_partial_instantiation_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
     };
 
     loadDefinition(R"(
@@ -1607,7 +1607,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_independent_instantiations_are_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
         {FFlag::LuauHigherOrderGenericInference, true},
     };
 
@@ -1640,7 +1640,7 @@ TEST_CASE_FIXTURE(BuiltinsFixture, "extern_type_generics_typeof_refines_generic_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
         {FFlag::LuauHigherOrderGenericInference, true},
     };
 
@@ -1676,7 +1676,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_unconstrained_generic_resolved_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
         {FFlag::LuauHigherOrderGenericInference, true},
     };
 
@@ -1717,7 +1717,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_independent_instantiations_are_
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
         {FFlag::LuauHigherOrderGenericInference, true},
     };
 
@@ -1775,7 +1775,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_vararg_constructor_method_only_
     std::vector<ScopedFastFlag> allFlags;
     for (Luau::FValue<bool>* flag = Luau::FValue<bool>::list; flag; flag = flag->next)
     {
-        if (strncmp(flag->name, "Luau", 4) == 0 && !Luau::isAnalysisFlagExperimental(flag->name))
+        if ((strncmp(flag->name, "Luau", 4) == 0 || strncmp(flag->name, "Luwu", 4) == 0) && !Luau::isAnalysisFlagExperimental(flag->name))
             allFlags.emplace_back(*flag, true);
     }
     ScopedFastFlag solverV2{FFlag::LuauSolverV2, true};
@@ -1808,7 +1808,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_method_with_own_generic_does_no
     std::vector<ScopedFastFlag> allFlags;
     for (Luau::FValue<bool>* flag = Luau::FValue<bool>::list; flag; flag = flag->next)
     {
-        if (strncmp(flag->name, "Luau", 4) == 0 && !Luau::isAnalysisFlagExperimental(flag->name))
+        if ((strncmp(flag->name, "Luau", 4) == 0 || strncmp(flag->name, "Luwu", 4) == 0) && !Luau::isAnalysisFlagExperimental(flag->name))
             allFlags.emplace_back(*flag, true);
     }
     ScopedFastFlag solverV2{FFlag::LuauSolverV2, true};
@@ -1846,7 +1846,7 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_method_self_type_is_parameteriz
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, false},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
+        {FFlag::LuwuGenericNominals, true},
         {FFlag::LuauHigherOrderGenericInference, true},
     };
 
@@ -1887,8 +1887,8 @@ TEST_CASE_FIXTURE(Fixture, "extern_type_generics_do_not_crash_old_solver")
     ScopedFastFlag sffs[] = {
         {FFlag::DebugLuauForceOldSolver, true},
         {FFlag::LuauExternTypeUseDefinitionScope, true},
-        {FFlag::LuauGenericNominals, true},
-        {FFlag::LuauExternTypeGenericMethods, true},
+        {FFlag::LuwuGenericNominals, true},
+        {FFlag::LuwuExternTypeGenericMethods, true},
     };
 
     unfreeze(getFrontend().globals.globalTypes);
