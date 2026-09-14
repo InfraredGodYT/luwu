@@ -44,7 +44,7 @@ LUAU_FASTFLAG(LuauBidirectionalInferenceSimplifyTables)
 LUAU_FASTFLAGVARIABLE(LuauBetterPackAndVariadicMismatchErrors)
 
 LUAU_FASTFLAG(DebugLuauUserDefinedClasses)
-LUAU_FASTFLAG(LuauDefaultArguments)
+LUAU_FASTFLAG(LuwuDefaultArguments)
 
 namespace Luau
 {
@@ -2080,7 +2080,7 @@ void TypeChecker2::visit(AstExprFunction* fn)
 
                 TypeId annotatedArgTy = lookupAnnotation(arg->annotation);
 
-                if (FFlag::LuauDefaultArguments)
+                if (FFlag::LuwuDefaultArguments)
                 {
                     TypeId argTy = fn->argsDefaults.data[i] ? stripNil(builtinTypes, *module->internalTypes, inferredArgTy) : inferredArgTy;
                     testIsSubtype(argTy, annotatedArgTy, arg->location);
