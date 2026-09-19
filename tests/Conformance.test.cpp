@@ -75,10 +75,10 @@ LUAU_FASTFLAG(LuauGcTraceUdata)
 LUAU_DYNAMIC_FASTFLAG(LuauGcTableStepFix)
 LUAU_FASTFLAG(LuauCodegenFixTwoResA64Builtin)
 LUAU_FASTFLAG(LuauMathRoundNegZero)
-LUAU_FASTFLAG(LuauDefaultArguments)
-LUAU_FASTFLAG(LuauNonePrimitive)
+LUAU_FASTFLAG(LuwuDefaultArguments)
+LUAU_FASTFLAG(LuwuNonePrimitive)
 LUAU_FASTFLAG(LuauDirectFieldGet)
-LUAU_FASTFLAG(LuauPcallMulti)
+LUAU_FASTFLAG(LuwuPcallMulti)
 
 #ifndef LUAU_CONFORMANCE_SOURCE_DIR
 // Walks up from the current directory looking for the Client folder,
@@ -2881,7 +2881,7 @@ TEST_CASE("ApiCalls")
 
 TEST_CASE("ApiPcallMulti")
 {
-    ScopedFastFlag luauPcallMulti{FFlag::LuauPcallMulti, true};
+    ScopedFastFlag luauPcallMulti{FFlag::LuwuPcallMulti, true};
     StateRef globalState(luaL_newstate(), lua_close);
     lua_State* L = globalState.get();
     // A simple function that errors
@@ -5054,14 +5054,14 @@ TEST_CASE("CodegenRandomizeFunctionalCorrectness")
 
 TEST_CASE("DefaultArguments")
 {
-    ScopedFastFlag sff{FFlag::LuauDefaultArguments, true};
+    ScopedFastFlag sff{FFlag::LuwuDefaultArguments, true};
 
     runConformance("defaultarg.luau");
 }
 
 TEST_CASE("None")
 {
-    ScopedFastFlag sff{FFlag::LuauNonePrimitive, true};
+    ScopedFastFlag sff{FFlag::LuwuNonePrimitive, true};
 
     runConformance("none.luau");
 }
@@ -5076,7 +5076,7 @@ TEST_CASE("lua_findunuseduserdatatag")
     lua_createtable(L, 0, 0);
     lua_setuserdatametatable(L, 0);
     lua_setuserdatadtor(L, 1, [](lua_State*, void*){});
-    lua_registeruserdatadirectfieldget(L, 2, "hina", [](void*, void*){});
+    lua_registeruserdatadirectfieldget(L, 2, "hina", [](lua_State*, void*, void*){});
 
     int available = lua_findunuseduserdatatag(L);
     CHECK_EQ(available, 3);
