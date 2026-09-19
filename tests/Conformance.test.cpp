@@ -1966,7 +1966,7 @@ static void populateRTTI(lua_State* L, Luau::TypeId type)
 TEST_CASE("Types")
 {
     ScopedFastFlag integerType{FFlag::LuauIntegerType2, true};
-    ScopedFastFlag nonePrimitive{FFlag::LuauNonePrimitive, true};
+    ScopedFastFlag nonePrimitive{FFlag::LuwuNonePrimitive, true};
     ScopedFastFlag tableDropFlag{FFlag::LuwuTableDrop, true};
 
     runConformance(
